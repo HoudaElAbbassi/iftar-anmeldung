@@ -68,10 +68,10 @@
   to   { stroke-dashoffset: 0; }
 }
 
-/* Gold-Glow-Puls für Success */
+/* Rose-Glow-Puls für Success */
 @keyframes goldGlow {
-  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.4), 0 0 60px rgba(201, 168, 76, 0.1); }
-  50%       { box-shadow: 0 0 40px rgba(201, 168, 76, 0.7), 0 0 80px rgba(201, 168, 76, 0.3); }
+  0%, 100% { box-shadow: 0 0 20px rgba(232, 114, 138, 0.35), 0 0 60px rgba(201, 168, 76, 0.1); }
+  50%       { box-shadow: 0 0 40px rgba(232, 114, 138, 0.6), 0 0 80px rgba(201, 168, 76, 0.2); }
 }
 
 /* Fehler-Shake */
@@ -117,8 +117,8 @@
 .spinner {
   width: 22px;
   height: 22px;
-  border: 3px solid rgba(13, 27, 42, 0.3);
-  border-top-color: var(--dark-blue);
+  border: 3px solid rgba(232, 114, 138, 0.25);
+  border-top-color: #fff;
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   display: inline-block;
