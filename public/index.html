@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Anmeldung – Rätselabend: Die Reise zum Herzen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/ornaments.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <img src="assets/ornament-top.svg" alt="" class="ornament-img" aria-hidden="true">
+
+      <div class="header-content">
+        <img src="assets/crescent.svg" alt="Halbmond" class="crescent-icon">
+        <div class="header-titles">
+          <h1>Rätselabend</h1>
+          <p class="subtitle">Die Reise zum Herzen</p>
+        </div>
+        <img src="assets/crescent.svg" alt="" class="crescent-icon" aria-hidden="true" style="transform: scaleX(-1)">
+      </div>
+
+      <div class="dot-ornament">
+        <span></span><span></span><span></span>
+      </div>
+
+      <div class="ramadan-badge">
+        🌙&nbsp; Mädchen-Iftar Ramadan &nbsp;🌙
+      </div>
+    </header>
+
+    <!-- ===== FORMULAR-CARD ===== -->
+    <main>
+      <div class="form-card">
+
+        <div class="corner-ornament top-left"></div>
+        <div class="corner-ornament top-right"></div>
+        <div class="corner-ornament bottom-left"></div>
+        <div class="corner-ornament bottom-right"></div>
+
+        <h2 class="form-title">Anmeldung</h2>
+        <p class="form-intro">Wir freuen uns auf einen unvergesslichen Abend mit euch!<br>Bitte füll das Formular vollständig aus.</p>
+
+        <div class="ornament-divider" aria-hidden="true"><span>✦</span></div>
+
+        <!-- Fehlerzusammenfassung -->
+        <div class="form-errors-summary" id="errorsSummary" role="alert" aria-live="polite">
+          <strong>Bitte korrigiere folgende Felder:</strong>
+          <ul id="errorsList"></ul>
+        </div>
+
+        <form id="anmeldeForm" novalidate>
+
+          <!-- Abschnitt 1: Name -->
+          <div class="form-section">
+            <p class="section-label"><span class="section-icon">👤</span> Dein Name</p>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="vorname">Vorname <span class="required">*</span></label>
+                <input
+                  type="text"
+                  id="vorname"
+                  name="vorname"
+                  placeholder="z. B. Fatima"
+                  autocomplete="given-name"
+                  required
+                >
+                <p class="error-message" id="err-vorname" role="alert" hidden></p>
+              </div>
+
+              <div class="form-group">
+                <label for="nachname">Nachname <span class="required">*</span></label>
+                <input
+                  type="text"
+                  id="nachname"
+                  name="nachname"
+                  placeholder="z. B. Al-Rashid"
+                  autocomplete="family-name"
+                  required
+                >
+                <p class="error-message" id="err-nachname" role="alert" hidden></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="ornament-divider" aria-hidden="true"><span>◆</span></div>
+
+          <!-- Abschnitt 2: Übernachtung -->
+          <div class="form-section">
+            <p class="section-label"><span class="section-icon">🌙</span> Übernachtung</p>
+
+            <div class="form-group">
+              <label>Übernachtest du? <span class="required">*</span></label>
+              <div class="radio-group">
+                <div class="radio-option">
+                  <input type="radio" id="ueb-ja" name="uebernachtung" value="ja">
+                  <label for="ueb-ja">
+                    <span class="radio-icon">🌛</span> Ja, ich schlafe über
+                  </label>
+                </div>
+                <div class="radio-option">
+                  <input type="radio" id="ueb-nein" name="uebernachtung" value="nein" checked>
+                  <label for="ueb-nein">
+                    <span class="radio-icon">🏠</span> Nein, ich fahre heim
+                  </label>
+                </div>
+              </div>
+              <p class="error-message" id="err-uebernachtung" role="alert" hidden></p>
+            </div>
+          </div>
+
+          <div class="ornament-divider" aria-hidden="true"><span>◆</span></div>
+
+          <!-- Abschnitt 3: Essens-Präferenzen -->
+          <div class="form-section">
+            <p class="section-label"><span class="section-icon">🍽️</span> Essens-Präferenzen &amp; Unverträglichkeiten</p>
+
+            <div class="form-group">
+              <label>Was trifft auf dich zu? <span style="font-weight:400;color:var(--text-muted)">(optional, Mehrfachauswahl möglich)</span></label>
+              <div class="checkbox-grid">
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-vegetarisch" name="essen" value="Vegetarisch">
+                  <label for="essen-vegetarisch"><span class="essen-icon">🥗</span> Vegetarisch</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-vegan" name="essen" value="Vegan">
+                  <label for="essen-vegan"><span class="essen-icon">🌿</span> Vegan</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-nuss" name="essen" value="Nussallergie">
+                  <label for="essen-nuss"><span class="essen-icon">🥜</span> Nussallergie</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-laktose" name="essen" value="Laktoseintoleranz">
+                  <label for="essen-laktose"><span class="essen-icon">🥛</span> Laktoseintoleranz</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-gluten" name="essen" value="Glutenfrei">
+                  <label for="essen-gluten"><span class="essen-icon">🌾</span> Glutenfrei</label>
+                </div>
+                <div class="checkbox-item">
+                  <input type="checkbox" id="essen-halal" name="essen" value="Nur Halal">
+                  <label for="essen-halal"><span class="essen-icon">✅</span> Nur Halal</label>
+                </div>
+              </div>
+
+              <label for="essen_sonstiges" style="margin-top: 4px">Sonstiges:</label>
+              <input
+                type="text"
+                id="essen_sonstiges"
+                name="essen_sonstiges"
+                placeholder="z. B. keine Zwiebeln, Fischunverträglichkeit ..."
+              >
+            </div>
+          </div>
+
+          <div class="ornament-divider" aria-hidden="true"><span>◆</span></div>
+
+          <!-- Abschnitt 4: Buffet-Beitrag -->
+          <div class="form-section">
+            <p class="section-label"><span class="section-icon">🫕</span> Beitrag zum Iftar-Buffet</p>
+
+            <div class="form-group">
+              <label for="buffet_beitrag">Was bringst du mit? <span class="required">*</span></label>
+              <textarea
+                id="buffet_beitrag"
+                name="buffet_beitrag"
+                rows="3"
+                placeholder="z. B. Fattoush-Salat, Baklava, Datteln, Limonade ..."
+                required
+              ></textarea>
+              <p class="error-message" id="err-buffet" role="alert" hidden></p>
+            </div>
+          </div>
+
+          <!-- Submit-Button -->
+          <button type="submit" class="submit-btn" id="submitBtn">
+            <span class="btn-text">Jetzt anmelden 🌙</span>
+          </button>
+
+        </form>
+      </div>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <img src="assets/ornament-bottom.svg" alt="" class="ornament-img-bottom" aria-hidden="true">
+      <p>Ramadan Mubarak &mdash; مرحباً بكم</p>
+    </footer>
+
+  </div>
+
+  <!-- ===== SUCCESS MODAL ===== -->
+  <div class="success-overlay" id="successOverlay" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+    <div class="success-card">
+      <div class="success-icon-wrapper">
+        <div class="success-circle">
+          <svg class="check-icon" viewBox="0 0 40 40">
+            <path d="M8 20 L16 28 L32 12" class="check-path"/>
+          </svg>
+        </div>
+        <span class="sparkle sparkle-1">✦</span>
+        <span class="sparkle sparkle-2">✦</span>
+        <span class="sparkle sparkle-3">✦</span>
+        <span class="sparkle sparkle-4">✦</span>
+      </div>
+
+      <h2 class="success-title" id="successTitle">Anmeldung erfolgreich!</h2>
+      <p class="success-arabic">الحمد لله – Alhamdulillah 🤍</p>
+      <p class="success-name" id="successName"></p>
+      <p class="success-message">
+        Wir freuen uns riesig auf dich beim Rätselabend!<br>
+        Bis zum Iftar – möge Allah euren Abend segnen. 🌙
+      </p>
+
+      <button class="close-modal-btn" id="closeModalBtn" onclick="closeModal()">
+        Schließen
+      </button>
+    </div>
+  </div>
+
+  <script src="js/form.js"></script>
+</body>
+</html>

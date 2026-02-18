@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin – Anmeldungen Rätselabend</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Lato:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --gold: #C9A84C;
+      --gold-light: #F0D080;
+      --dark-blue: #0D1B2A;
+      --mid-blue: #1A3A5C;
+      --teal: #2E8B9A;
+      --cream: #FDF6E3;
+      --white: #fff;
+      --error: #E05252;
+      --success: #4CAF50;
+      --text-muted: #6B7A8D;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background: linear-gradient(135deg, var(--dark-blue) 0%, #0A2540 100%);
+      min-height: 100vh;
+      color: #1a1a2e;
+    }
+
+    /* Login-Screen */
+    #loginScreen {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .login-card {
+      background: var(--cream);
+      border-radius: 20px;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+      padding: 48px 40px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .login-card h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--mid-blue);
+      font-size: 1.6rem;
+      margin-bottom: 6px;
+    }
+
+    .login-card p {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      margin-bottom: 28px;
+    }
+
+    .login-field {
+      margin-bottom: 16px;
+      text-align: left;
+    }
+
+    .login-field label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.83rem;
+      color: var(--mid-blue);
+      margin-bottom: 6px;
+    }
+
+    .login-field input {
+      width: 100%;
+      padding: 11px 14px;
+      border: 1.5px solid rgba(26, 58, 92, 0.2);
+      border-radius: 10px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .login-field input:focus {
+      border-color: var(--gold);
+      box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+    }
+
+    .login-btn {
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border: none;
+      border-radius: 50px;
+      color: var(--dark-blue);
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 8px;
+      transition: box-shadow 0.2s;
+    }
+
+    .login-btn:hover { box-shadow: 0 6px 20px rgba(201, 168, 76, 0.4); }
+
+    .login-error {
+      color: var(--error);
+      font-size: 0.83rem;
+      margin-top: 10px;
+      display: none;
+    }
+
+    /* Admin-Dashboard */
+    #adminDashboard { display: none; }
+
+    .admin-header {
+      background: rgba(13, 27, 42, 0.95);
+      border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    .admin-header h1 {
+      font-family: 'Playfair Display', serif;
+      color: var(--gold-light);
+      font-size: 1.2rem;
+    }
+
+    .admin-header h1 span {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      font-family: 'Lato', sans-serif;
+      font-weight: 400;
+      margin-left: 8px;
+    }
+
+    .logout-btn {
+      background: transparent;
+      border: 1px solid rgba(201, 168, 76, 0.4);
+      color: var(--gold-light);
+      padding: 7px 16px;
+      border-radius: 50px;
+      font-size: 0.83rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .logout-btn:hover { background: rgba(201, 168, 76, 0.1); }
+
+    .admin-content {
+      padding: 28px 24px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    /* Statistik-Karten */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .stat-card {
+      background: var(--cream);
+      border-radius: 14px;
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      padding: 20px 22px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.25);
+    }
+
+    .stat-card .stat-label {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .stat-card .stat-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--mid-blue);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .stat-card .stat-icon { font-size: 1.4rem; margin-bottom: 8px; }
+
+    /* Filter-Leiste */
+    .filter-bar {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .filter-bar input {
+      flex: 1;
+      min-width: 180px;
+      padding: 10px 14px;
+      border: 1.5px solid rgba(26, 58, 92, 0.2);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      outline: none;
+      background: var(--cream);
+      transition: border-color 0.2s;
+    }
+
+    .filter-bar input:focus { border-color: var(--gold); }
+
+    .filter-bar select {
+      padding: 10px 14px;
+      border: 1.5px solid rgba(26, 58, 92, 0.2);
+      border-radius: 10px;
+      font-size: 0.9rem;
+      background: var(--cream);
+      outline: none;
+      cursor: pointer;
+    }
+
+    .export-btn {
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      border: none;
+      border-radius: 10px;
+      color: var(--dark-blue);
+      padding: 10px 18px;
+      font-weight: 600;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: box-shadow 0.2s;
+      white-space: nowrap;
+    }
+
+    .export-btn:hover { box-shadow: 0 4px 14px rgba(201, 168, 76, 0.4); }
+
+    /* Tabelle */
+    .table-wrapper {
+      background: var(--cream);
+      border-radius: 16px;
+      border: 1px solid rgba(201, 168, 76, 0.25);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: var(--mid-blue);
+      color: var(--gold-light);
+    }
+
+    thead th {
+      padding: 13px 16px;
+      text-align: left;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid rgba(201, 168, 76, 0.1);
+      transition: background 0.15s;
+    }
+
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(201, 168, 76, 0.06); }
+
+    tbody td {
+      padding: 12px 16px;
+      font-size: 0.88rem;
+      color: #1a1a2e;
+      vertical-align: top;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    .badge-ja { background: rgba(46, 139, 154, 0.15); color: var(--teal); border: 1px solid rgba(46, 139, 154, 0.3); }
+    .badge-nein { background: rgba(107, 122, 141, 0.1); color: var(--text-muted); border: 1px solid rgba(107, 122, 141, 0.2); }
+
+    .essen-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+    .essen-tag {
+      background: rgba(201, 168, 76, 0.12);
+      border: 1px solid rgba(201, 168, 76, 0.3);
+      border-radius: 50px;
+      padding: 2px 8px;
+      font-size: 0.72rem;
+      color: var(--mid-blue);
+    }
+
+    .no-data {
+      text-align: center;
+      padding: 48px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+
+    .loading-msg {
+      text-align: center;
+      padding: 48px;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 600px) {
+      .admin-header { padding: 12px 16px; }
+      .admin-content { padding: 16px; }
+      table { font-size: 0.8rem; }
+      thead th, tbody td { padding: 10px 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== LOGIN-SCREEN ===== -->
+  <div id="loginScreen">
+    <div class="login-card">
+      <div style="font-size: 2rem; margin-bottom: 12px">🌙</div>
+      <h1>Admin-Bereich</h1>
+      <p>Rätselabend: Die Reise zum Herzen</p>
+
+      <div class="login-field">
+        <label for="adminUser">Benutzername</label>
+        <input type="text" id="adminUser" placeholder="Benutzername" autocomplete="username">
+      </div>
+      <div class="login-field">
+        <label for="adminPass">Passwort</label>
+        <input type="password" id="adminPass" placeholder="Passwort" autocomplete="current-password">
+      </div>
+
+      <button class="login-btn" onclick="adminLogin()">Einloggen</button>
+      <p class="login-error" id="loginError">Ungültige Anmeldedaten.</p>
+    </div>
+  </div>
+
+  <!-- ===== ADMIN DASHBOARD ===== -->
+  <div id="adminDashboard">
+    <header class="admin-header">
+      <h1>
+        🌙 Anmeldungen
+        <span>Rätselabend: Die Reise zum Herzen</span>
+      </h1>
+      <button class="logout-btn" onclick="adminLogout()">Ausloggen</button>
+    </header>
+
+    <div class="admin-content">
+
+      <!-- Statistiken -->
+      <div class="stats-row" id="statsRow">
+        <div class="stat-card">
+          <div class="stat-icon">👥</div>
+          <div class="stat-label">Anmeldungen gesamt</div>
+          <div class="stat-value" id="statTotal">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🌙</div>
+          <div class="stat-label">Mit Übernachtung</div>
+          <div class="stat-value" id="statUebernachtung">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏠</div>
+          <div class="stat-label">Ohne Übernachtung</div>
+          <div class="stat-value" id="statOhneUeb">–</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🍽️</div>
+          <div class="stat-label">Mit Essens-Angaben</div>
+          <div class="stat-value" id="statEssen">–</div>
+        </div>
+      </div>
+
+      <!-- Filter & Export -->
+      <div class="filter-bar">
+        <input type="search" id="searchInput" placeholder="🔍 Name suchen ..." oninput="applyFilters()">
+        <select id="uebFilter" onchange="applyFilters()">
+          <option value="alle">Alle (Übernachtung)</option>
+          <option value="ja">Nur mit Übernachtung</option>
+          <option value="nein">Nur ohne Übernachtung</option>
+        </select>
+        <button class="export-btn" onclick="exportCSV()">⬇ CSV exportieren</button>
+      </div>
+
+      <!-- Tabelle -->
+      <div class="table-wrapper">
+        <div class="loading-msg" id="loadingMsg">Daten werden geladen ...</div>
+        <table id="anmeldungenTable" style="display:none">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Name</th>
+              <th>Übernachtung</th>
+              <th>Essens-Angaben</th>
+              <th>Buffet-Beitrag</th>
+              <th>Datum</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <p class="no-data" id="noDataMsg" style="display:none">Keine Anmeldungen gefunden.</p>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="js/admin.js"></script>
+</body>
+</html>

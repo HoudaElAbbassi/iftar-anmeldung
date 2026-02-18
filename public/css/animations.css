@@ -1,0 +1,153 @@
+/* ========================================
+   Animationen & Übergänge
+   ======================================== */
+
+/* Header einblenden */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Formularfelder einblenden */
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Puls-Effekt für Button */
+@keyframes pulse {
+  0%, 100% { transform: scale(1); box-shadow: 0 4px 20px rgba(201, 168, 76, 0.3); }
+  50%       { transform: scale(1.02); box-shadow: 0 6px 28px rgba(201, 168, 76, 0.5); }
+}
+
+/* Lade-Spinner */
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+/* Success-Modal einblenden */
+@keyframes modalIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Hintergrund-Overlay */
+@keyframes overlayIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Stern-Funkel */
+@keyframes sparkle {
+  0%, 100% { opacity: 0; transform: scale(0); }
+  50%       { opacity: 1; transform: scale(1); }
+}
+
+/* Häkchen-Zeichnung */
+@keyframes drawCheck {
+  from { stroke-dashoffset: 60; }
+  to   { stroke-dashoffset: 0; }
+}
+
+/* Gold-Glow-Puls für Success */
+@keyframes goldGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(201, 168, 76, 0.4), 0 0 60px rgba(201, 168, 76, 0.1); }
+  50%       { box-shadow: 0 0 40px rgba(201, 168, 76, 0.7), 0 0 80px rgba(201, 168, 76, 0.3); }
+}
+
+/* Fehler-Shake */
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%       { transform: translateX(-8px); }
+  40%       { transform: translateX(8px); }
+  60%       { transform: translateX(-5px); }
+  80%       { transform: translateX(5px); }
+}
+
+/* Schweben für Ornament-Header */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-5px); }
+}
+
+/* === Anwendung der Animationen === */
+
+.site-header {
+  animation: fadeInDown 0.8s ease-out both;
+}
+
+.crescent-icon {
+  animation: float 4s ease-in-out infinite;
+}
+
+.form-group {
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.form-group:nth-child(1) { animation-delay: 0.1s; }
+.form-group:nth-child(2) { animation-delay: 0.2s; }
+.form-group:nth-child(3) { animation-delay: 0.3s; }
+.form-group:nth-child(4) { animation-delay: 0.4s; }
+.form-group:nth-child(5) { animation-delay: 0.5s; }
+.form-group:nth-child(6) { animation-delay: 0.6s; }
+
+.submit-btn:hover {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.spinner {
+  width: 22px;
+  height: 22px;
+  border: 3px solid rgba(13, 27, 42, 0.3);
+  border-top-color: var(--dark-blue);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  display: inline-block;
+}
+
+.success-overlay {
+  animation: overlayIn 0.3s ease-out both;
+}
+
+.success-card {
+  animation: modalIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s both,
+             goldGlow 2.5s ease-in-out 0.5s infinite;
+}
+
+.check-icon path {
+  stroke-dasharray: 60;
+  stroke-dashoffset: 60;
+  animation: drawCheck 0.5s ease-out 0.4s both;
+}
+
+.error-message {
+  animation: slideInUp 0.3s ease-out both;
+}
+
+.input-error {
+  animation: shake 0.4s ease-out;
+}
+
+.sparkle-1 { animation: sparkle 1.5s ease-in-out 0.6s infinite; }
+.sparkle-2 { animation: sparkle 1.5s ease-in-out 0.9s infinite; }
+.sparkle-3 { animation: sparkle 1.5s ease-in-out 1.2s infinite; }
+.sparkle-4 { animation: sparkle 1.5s ease-in-out 0.75s infinite; }

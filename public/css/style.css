@@ -1,0 +1,588 @@
+/* ========================================
+   Mädchen-Iftar Rätselabend: Die Reise zum Herzen
+   Haupt-Stylesheet
+   ======================================== */
+
+/* === Design-Tokens === */
+:root {
+  --gold:        #C9A84C;
+  --gold-light:  #F0D080;
+  --gold-dark:   #A0803A;
+  --dark-blue:   #0D1B2A;
+  --mid-blue:    #1A3A5C;
+  --teal:        #2E8B9A;
+  --teal-light:  #4FC1C9;
+  --cream:       #FDF6E3;
+  --cream-dark:  #F5EDD5;
+  --text-dark:   #1A1A2E;
+  --text-muted:  #6B7A8D;
+  --white:       #FFFFFF;
+  --error:       #E05252;
+  --success:     #4CAF50;
+  --border-radius: 12px;
+  --shadow-gold: 0 4px 24px rgba(201, 168, 76, 0.25);
+}
+
+/* === Reset & Basis === */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', 'Helvetica Neue', sans-serif;
+  background: linear-gradient(135deg, var(--dark-blue) 0%, #0A2540 40%, #102030 100%);
+  min-height: 100vh;
+  color: var(--text-dark);
+  position: relative;
+  overflow-x: hidden;
+}
+
+body > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* === Layout === */
+.page-wrapper {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 48px;
+}
+
+/* === Header === */
+.site-header {
+  text-align: center;
+  margin-bottom: 32px;
+  max-width: 680px;
+  width: 100%;
+}
+
+.ornament-img {
+  width: 100%;
+  max-width: 480px;
+  height: 60px;
+  object-fit: contain;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 8px;
+}
+
+.crescent-icon {
+  width: 56px;
+  height: 56px;
+  filter: drop-shadow(0 0 10px rgba(201, 168, 76, 0.5));
+}
+
+.header-titles h1 {
+  font-family: 'Playfair Display', 'Georgia', serif;
+  font-size: clamp(1.4rem, 4vw, 2rem);
+  font-weight: 700;
+  color: var(--gold-light);
+  line-height: 1.2;
+  text-shadow: 0 2px 12px rgba(201, 168, 76, 0.3);
+}
+
+.header-titles .subtitle {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.8rem, 2.5vw, 1rem);
+  color: var(--teal-light);
+  font-style: italic;
+  opacity: 0.9;
+  margin-top: 4px;
+}
+
+.ramadan-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(201, 168, 76, 0.12);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 50px;
+  padding: 6px 16px;
+  color: var(--gold-light);
+  font-size: 0.8rem;
+  letter-spacing: 1px;
+  margin-top: 12px;
+  text-transform: uppercase;
+}
+
+/* === Formular-Card === */
+.form-card {
+  background: rgba(253, 246, 227, 0.97);
+  border-radius: 20px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  box-shadow: var(--shadow-gold), 0 20px 60px rgba(0, 0, 0, 0.4);
+  padding: 40px 36px;
+  width: 100%;
+  max-width: 680px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Innere Zierleiste oben */
+.form-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+}
+
+.form-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--mid-blue);
+  text-align: center;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.form-intro {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+
+/* === Formular-Abschnitte === */
+.form-section {
+  margin-bottom: 8px;
+}
+
+.section-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: var(--mid-blue);
+  font-weight: 600;
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-label .section-icon {
+  font-size: 1.1rem;
+}
+
+/* === Formularfelder === */
+.form-group {
+  margin-bottom: 18px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+label {
+  display: block;
+  font-weight: 600;
+  font-size: 0.85rem;
+  color: var(--mid-blue);
+  margin-bottom: 6px;
+  letter-spacing: 0.3px;
+}
+
+label .required {
+  color: var(--gold-dark);
+  margin-left: 3px;
+}
+
+input[type="text"],
+input[type="email"],
+textarea {
+  width: 100%;
+  padding: 12px 16px;
+  border: 1.5px solid rgba(26, 58, 92, 0.2);
+  border-radius: var(--border-radius);
+  font-family: 'Lato', sans-serif;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  background: var(--white);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+textarea:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(201, 168, 76, 0.15);
+}
+
+input[type="text"].input-error,
+textarea.input-error {
+  border-color: var(--error);
+  box-shadow: 0 0 0 3px rgba(224, 82, 82, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: rgba(107, 122, 141, 0.6);
+  font-style: italic;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 90px;
+  line-height: 1.5;
+}
+
+/* === Radio-Buttons === */
+.radio-group {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.radio-option {
+  flex: 1;
+  min-width: 120px;
+}
+
+.radio-option input[type="radio"] {
+  display: none;
+}
+
+.radio-option label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border: 1.5px solid rgba(26, 58, 92, 0.2);
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  background: var(--white);
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.radio-option label .radio-icon {
+  font-size: 1.1rem;
+}
+
+.radio-option input[type="radio"]:checked + label {
+  border-color: var(--gold);
+  background: rgba(201, 168, 76, 0.1);
+  color: var(--mid-blue);
+  box-shadow: 0 0 0 2px rgba(201, 168, 76, 0.25);
+  font-weight: 600;
+}
+
+.radio-option label:hover {
+  border-color: rgba(201, 168, 76, 0.5);
+  background: rgba(201, 168, 76, 0.05);
+}
+
+/* === Checkboxen === */
+.checkbox-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+  border: 2px solid rgba(26, 58, 92, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  accent-color: var(--gold-dark);
+  flex-shrink: 0;
+}
+
+.checkbox-item label {
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  cursor: pointer;
+  font-weight: 400;
+  margin-bottom: 0;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkbox-item label .essen-icon {
+  font-size: 0.95rem;
+}
+
+/* === Submit-Button === */
+.submit-btn {
+  width: 100%;
+  padding: 15px 32px;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-light) 50%, var(--gold) 100%);
+  background-size: 200% 100%;
+  border: none;
+  border-radius: 50px;
+  color: var(--dark-blue);
+  font-family: 'Playfair Display', serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  margin-top: 8px;
+  transition: background-position 0.4s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  box-shadow: 0 4px 20px rgba(201, 168, 76, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-position: 100% 0;
+  box-shadow: 0 6px 30px rgba(201, 168, 76, 0.5);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.btn-text {
+  transition: opacity 0.2s;
+}
+
+/* === Fehlermeldungen === */
+.error-message {
+  color: var(--error);
+  font-size: 0.8rem;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.form-errors-summary {
+  background: rgba(224, 82, 82, 0.08);
+  border: 1px solid rgba(224, 82, 82, 0.3);
+  border-radius: var(--border-radius);
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  color: var(--error);
+  font-size: 0.88rem;
+  display: none;
+}
+
+.form-errors-summary.visible {
+  display: block;
+}
+
+.form-errors-summary ul {
+  padding-left: 16px;
+  margin-top: 4px;
+}
+
+/* === Success-Modal === */
+.success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(13, 27, 42, 0.85);
+  backdrop-filter: blur(6px);
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.success-overlay.visible {
+  display: flex;
+}
+
+.success-card {
+  background: var(--cream);
+  border-radius: 24px;
+  border: 2px solid rgba(201, 168, 76, 0.5);
+  padding: 48px 40px;
+  max-width: 440px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.success-card::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: linear-gradient(to right, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
+}
+
+.success-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px;
+}
+
+.success-circle {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(201, 168, 76, 0.2), rgba(201, 168, 76, 0.1));
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.check-icon path {
+  stroke: var(--gold-dark);
+  stroke-width: 3;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.sparkle {
+  position: absolute;
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.sparkle-1 { top: -5px; right: 0; }
+.sparkle-2 { bottom: 0; right: -5px; }
+.sparkle-3 { bottom: -5px; left: 0; }
+.sparkle-4 { top: 0; left: -5px; }
+
+.success-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--mid-blue);
+  margin-bottom: 8px;
+  font-weight: 700;
+}
+
+.success-arabic {
+  font-size: 1rem;
+  color: var(--gold-dark);
+  margin-bottom: 16px;
+  font-style: italic;
+}
+
+.success-name {
+  font-size: 1.1rem;
+  color: var(--text-dark);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.success-message {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  margin-bottom: 24px;
+}
+
+.close-modal-btn {
+  background: transparent;
+  border: 1.5px solid var(--gold);
+  border-radius: 50px;
+  color: var(--mid-blue);
+  padding: 10px 28px;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-weight: 600;
+}
+
+.close-modal-btn:hover {
+  background: var(--gold);
+  color: var(--dark-blue);
+}
+
+/* === Footer === */
+.site-footer {
+  margin-top: 32px;
+  text-align: center;
+  color: rgba(201, 168, 76, 0.5);
+  font-size: 0.78rem;
+  letter-spacing: 0.5px;
+}
+
+.site-footer .ornament-img-bottom {
+  width: 100%;
+  max-width: 400px;
+  height: 50px;
+  object-fit: contain;
+  opacity: 0.5;
+  margin-bottom: 8px;
+}
+
+/* === Responsive === */
+@media (max-width: 520px) {
+  .form-card {
+    padding: 28px 20px;
+    border-radius: 16px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkbox-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .crescent-icon {
+    width: 44px;
+    height: 44px;
+  }
+
+  .success-card {
+    padding: 36px 24px;
+  }
+}
+
+@media (max-width: 360px) {
+  .radio-group {
+    flex-direction: column;
+  }
+}

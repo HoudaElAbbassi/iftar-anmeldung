@@ -1,0 +1,131 @@
+/* ========================================
+   Islamische Ornamente & Muster
+   ======================================== */
+
+/* Geometrisches 8-Punkt-Stern Hintergrundmuster */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23C9A84C' stroke-width='0.4' opacity='0.15'%3E%3Cpolygon points='40,5 44,20 58,15 49,27 64,31 50,36 55,50 40,43 25,50 30,36 16,31 31,27 22,15 36,20'/%3E%3Ccircle cx='40' cy='40' r='12'/%3E%3Crect x='28' y='28' width='24' height='24' transform='rotate(45 40 40)'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ornament-Trennlinie */
+.ornament-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.ornament-divider::before,
+.ornament-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201, 168, 76, 0.6), transparent);
+}
+
+.ornament-divider span {
+  color: var(--gold);
+  font-size: 1rem;
+  opacity: 0.8;
+  line-height: 1;
+}
+
+/* Khatam-Muster für Abschnittstrennungen */
+.section-ornament {
+  text-align: center;
+  color: var(--gold);
+  opacity: 0.6;
+  font-size: 1.2rem;
+  letter-spacing: 8px;
+  margin: 4px 0;
+}
+
+/* Arabischer Rahmen-Effekt für Card */
+.form-card::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 18px;
+  background: linear-gradient(135deg,
+    rgba(201, 168, 76, 0.3) 0%,
+    transparent 30%,
+    transparent 70%,
+    rgba(201, 168, 76, 0.3) 100%
+  );
+  z-index: -1;
+}
+
+/* Eckornamente */
+.corner-ornament {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.4;
+}
+
+.corner-ornament.top-left {
+  top: 12px;
+  left: 12px;
+  border-top: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  border-radius: 4px 0 0 0;
+}
+
+.corner-ornament.top-right {
+  top: 12px;
+  right: 12px;
+  border-top: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  border-radius: 0 4px 0 0;
+}
+
+.corner-ornament.bottom-left {
+  bottom: 12px;
+  left: 12px;
+  border-bottom: 2px solid var(--gold);
+  border-left: 2px solid var(--gold);
+  border-radius: 0 0 0 4px;
+}
+
+.corner-ornament.bottom-right {
+  bottom: 12px;
+  right: 12px;
+  border-bottom: 2px solid var(--gold);
+  border-right: 2px solid var(--gold);
+  border-radius: 0 0 4px 0;
+}
+
+/* Dekorative Punkte */
+.dot-ornament {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin: 4px 0;
+}
+
+.dot-ornament span {
+  display: block;
+  width: 4px;
+  height: 4px;
+  background: var(--gold);
+  border-radius: 50%;
+  opacity: 0.5;
+}
+
+.dot-ornament span:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  opacity: 0.7;
+}
+
+.dot-ornament span:nth-child(3) {
+  width: 4px;
+  height: 4px;
+  opacity: 0.5;
+}

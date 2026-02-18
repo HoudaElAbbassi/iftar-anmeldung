@@ -1,0 +1,15 @@
+# Umgebungsvariablen (niemals committen!)
+.env
+.env.local
+
+# Abhängigkeiten
+node_modules/
+
+# Datenbank (lokal)
+database/anmeldungen.db
+
+# Netlify-Cache
+.netlify/
+
+# macOS
+.DS_Store

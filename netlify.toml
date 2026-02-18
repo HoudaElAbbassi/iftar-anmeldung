@@ -1,0 +1,21 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+
+# API: Anmeldung einreichen
+[[redirects]]
+  from = "/api/anmeldung"
+  to = "/.netlify/functions/anmeldung"
+  status = 200
+
+# API: Admin – alle Anmeldungen abrufen
+[[redirects]]
+  from = "/api/admin/anmeldungen"
+  to = "/.netlify/functions/admin-anmeldungen"
+  status = 200
+
+# Admin-Seite
+[[redirects]]
+  from = "/admin"
+  to = "/admin.html"
+  status = 200

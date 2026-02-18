@@ -1,0 +1,17 @@
+{
+  "name": "iftar-anmeldung",
+  "version": "1.0.0",
+  "description": "Mädchen-Iftar Rätselabend: Die Reise zum Herzen – Anmeldeformular",
+  "main": "server.js",
+  "scripts": {
+    "start": "node --experimental-sqlite server.js",
+    "dev": "nodemon --exec 'node --experimental-sqlite' server.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.7",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

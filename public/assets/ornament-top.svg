@@ -1,0 +1,27 @@
+<svg viewBox="0 0 600 80" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <!-- Mittlerer Bogen -->
+  <path d="M220 80 Q300 10 380 80" stroke="#C9A84C" stroke-width="1.5" fill="none" opacity="0.8"/>
+  <!-- Kleiner Halbmond in der Mitte -->
+  <path d="M295 30 C288 30 283 36 283 43 C283 50 288 56 295 56 C291 53 288 48 288 43 C288 38 291 33 295 30Z" fill="#C9A84C" opacity="0.9"/>
+  <circle cx="305" cy="38" r="2" fill="#C9A84C" opacity="0.8"/>
+  <!-- Linke Ornamente -->
+  <line x1="0" y1="40" x2="200" y2="40" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
+  <circle cx="180" cy="40" r="3" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+  <circle cx="160" cy="40" r="2" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+  <circle cx="145" cy="40" r="1.5" fill="#C9A84C" opacity="0.4"/>
+  <path d="M100 35 L110 40 L100 45" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M70 35 L80 40 L70 45" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <!-- Rechte Ornamente (gespiegelt) -->
+  <line x1="400" y1="40" x2="600" y2="40" stroke="#C9A84C" stroke-width="0.8" opacity="0.4"/>
+  <circle cx="420" cy="40" r="3" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.6"/>
+  <circle cx="440" cy="40" r="2" fill="none" stroke="#C9A84C" stroke-width="1" opacity="0.5"/>
+  <circle cx="455" cy="40" r="1.5" fill="#C9A84C" opacity="0.4"/>
+  <path d="M500 35 L490 40 L500 45" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.4"/>
+  <path d="M530 35 L520 40 L530 45" stroke="#C9A84C" stroke-width="0.8" fill="none" opacity="0.3"/>
+  <!-- Geometrische Akzente links -->
+  <path d="M190 25 L195 35 L185 35 Z" fill="#C9A84C" opacity="0.3"/>
+  <path d="M210 20 L215 30 L205 30 Z" fill="#C9A84C" opacity="0.25"/>
+  <!-- Geometrische Akzente rechts -->
+  <path d="M410 25 L405 35 L415 35 Z" fill="#C9A84C" opacity="0.3"/>
+  <path d="M390 20 L385 30 L395 30 Z" fill="#C9A84C" opacity="0.25"/>
+</svg>
