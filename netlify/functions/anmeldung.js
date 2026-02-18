@@ -1,10 +1,11 @@
-const { createClient } = require('@supabase/supabase-js');
+const { neon } = require('@neondatabase/serverless');
 
 exports.handler = async (event) => {
   // Nur POST erlauben
   if (event.httpMethod !== 'POST') {
     return {
       statusCode: 405,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, errors: ['Methode nicht erlaubt.'] })
     };
   }
@@ -16,6 +17,7 @@ exports.handler = async (event) => {
   } catch {
     return {
       statusCode: 400,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, errors: ['Ungültige Anfrage.'] })
     };
   }
@@ -43,32 +45,32 @@ exports.handler = async (event) => {
     essenArray.push(essen_sonstiges.trim());
   }
 
-  // Supabase-Client
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_KEY
-  );
+  // Neon-Client
+  const sql = neon(process.env.DATABASE_URL);
 
-  const { error } = await supabase.from('anmeldungen').insert({
-    vorname: vorname.trim(),
-    nachname: nachname.trim(),
-    uebernachtung,
-    essen_praeferenzen: JSON.stringify(essenArray),
-    buffet_beitrag: buffet_beitrag.trim()
-  });
+  try {
+    await sql`
+      INSERT INTO anmeldungen (vorname, nachname, uebernachtung, essen_praeferenzen, buffet_beitrag)
+      VALUES (
+        ${vorname.trim()},
+        ${nachname.trim()},
+        ${uebernachtung},
+        ${JSON.stringify(essenArray)},
+        ${buffet_beitrag.trim()}
+      )
+    `;
 
-  if (error) {
-    console.error('Supabase Fehler:', error);
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ success: true, message: 'Anmeldung erfolgreich gespeichert!' })
+    };
+  } catch (err) {
+    console.error('Neon Fehler:', err);
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, errors: ['Serverfehler. Bitte versuche es erneut.'] })
     };
   }
-
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ success: true, message: 'Anmeldung erfolgreich gespeichert!' })
-  };
 };

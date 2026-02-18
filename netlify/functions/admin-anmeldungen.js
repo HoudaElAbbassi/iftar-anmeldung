@@ -1,10 +1,11 @@
-const { createClient } = require('@supabase/supabase-js');
+const { neon } = require('@neondatabase/serverless');
 
 exports.handler = async (event) => {
   // Nur GET erlauben
   if (event.httpMethod !== 'GET') {
     return {
       statusCode: 405,
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, error: 'Methode nicht erlaubt.' })
     };
   }
@@ -25,7 +26,7 @@ exports.handler = async (event) => {
   const base64 = authHeader.slice(6);
   const decoded = Buffer.from(base64, 'base64').toString('utf-8');
   const [user, ...passParts] = decoded.split(':');
-  const pass = passParts.join(':'); // Passwort kann Doppelpunkte enthalten
+  const pass = passParts.join(':');
 
   const expectedUser = process.env.ADMIN_USER || 'admin';
   const expectedPass = process.env.ADMIN_PASS || 'iftar2025';
@@ -41,29 +42,25 @@ exports.handler = async (event) => {
     };
   }
 
-  // Supabase-Client
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_SERVICE_KEY
-  );
+  // Neon-Client
+  const sql = neon(process.env.DATABASE_URL);
 
-  const { data, error } = await supabase
-    .from('anmeldungen')
-    .select('*')
-    .order('erstellt_am', { ascending: false });
+  try {
+    const rows = await sql`
+      SELECT * FROM anmeldungen ORDER BY erstellt_am DESC
+    `;
 
-  if (error) {
-    console.error('Supabase Fehler:', error);
+    return {
+      statusCode: 200,
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ success: true, data: rows })
+    };
+  } catch (err) {
+    console.error('Neon Fehler:', err);
     return {
       statusCode: 500,
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ success: false, error: 'Serverfehler.' })
     };
   }
-
-  return {
-    statusCode: 200,
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ success: true, data })
-  };
 };
