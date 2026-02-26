@@ -9,6 +9,7 @@ router.post('/', (req, res) => {
   const errors = [];
   if (!vorname || vorname.trim() === '') errors.push('Vorname ist erforderlich.');
   if (!nachname || nachname.trim() === '') errors.push('Nachname ist erforderlich.');
+  if (!telefonnummer || telefonnummer.trim() === '') errors.push('Telefonnummer ist erforderlich.');
   if (!uebernachtung || !['ja', 'nein'].includes(uebernachtung)) errors.push('Bitte wähle aus, ob du übernachtest.');
   if (!buffet_beitrag || buffet_beitrag.trim() === '') errors.push('Bitte trag ein, was du zum Buffet mitbringst.');
 
@@ -31,7 +32,7 @@ router.post('/', (req, res) => {
     stmt.run(
       vorname.trim(),
       nachname.trim(),
-      telefonnummer ? telefonnummer.trim() : null,
+      telefonnummer.trim(),
       uebernachtung,
       essenJSON,
       buffet_beitrag.trim()

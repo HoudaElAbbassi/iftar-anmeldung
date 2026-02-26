@@ -99,14 +99,16 @@
             <p class="section-label"><span class="section-icon">📱</span> Telefonnummer</p>
 
             <div class="form-group">
-              <label for="telefonnummer">Telefonnummer <span style="font-weight:400;color:var(--text-muted)">(optional)</span></label>
+              <label for="telefonnummer">Telefonnummer <span class="required">*</span></label>
               <input
                 type="tel"
                 id="telefonnummer"
                 name="telefonnummer"
                 placeholder="z. B. +49 151 12345678"
                 autocomplete="tel"
+                required
               >
+              <p class="error-message" id="err-telefonnummer" role="alert" hidden></p>
             </div>
           </div>
 

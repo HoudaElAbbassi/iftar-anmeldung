@@ -32,6 +32,7 @@ function validateForm(data) {
 
   if (!data.vorname) errors.push({ field: 'vorname', message: 'Vorname ist erforderlich.' });
   if (!data.nachname) errors.push({ field: 'nachname', message: 'Nachname ist erforderlich.' });
+  if (!data.telefonnummer) errors.push({ field: 'telefonnummer', message: 'Telefonnummer ist erforderlich.' });
   if (!data.uebernachtung) errors.push({ field: 'uebernachtung', message: 'Bitte wähle aus, ob du übernachtest.' });
   if (!data.buffet_beitrag) errors.push({ field: 'buffet', message: 'Bitte trag ein, was du zum Buffet mitbringst.' });
 
@@ -58,6 +59,7 @@ function showErrors(errors) {
   errors.forEach(err => {
     if (err.field === 'vorname') markFieldError('vorname', 'err-vorname', err.message);
     if (err.field === 'nachname') markFieldError('nachname', 'err-nachname', err.message);
+    if (err.field === 'telefonnummer') markFieldError('telefonnummer', 'err-telefonnummer', err.message);
     if (err.field === 'buffet') markFieldError('buffet_beitrag', 'err-buffet', err.message);
     if (err.field === 'uebernachtung') {
       const errEl = document.getElementById('err-uebernachtung');
@@ -95,6 +97,10 @@ document.getElementById('vorname').addEventListener('input', () => {
 document.getElementById('nachname').addEventListener('input', () => {
   document.getElementById('nachname').classList.remove('input-error');
   document.getElementById('err-nachname').hidden = true;
+});
+document.getElementById('telefonnummer').addEventListener('input', () => {
+  document.getElementById('telefonnummer').classList.remove('input-error');
+  document.getElementById('err-telefonnummer').hidden = true;
 });
 document.getElementById('buffet_beitrag').addEventListener('input', () => {
   document.getElementById('buffet_beitrag').classList.remove('input-error');
