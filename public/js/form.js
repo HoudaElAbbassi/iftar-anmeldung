@@ -20,9 +20,10 @@ function collectFormData() {
     .map(cb => cb.value);
   const essenSonstiges = document.getElementById('essen_sonstiges').value.trim();
 
+  const telefonnummer = document.getElementById('telefonnummer').value.trim();
   const buffetBeitrag = document.getElementById('buffet_beitrag').value.trim();
 
-  return { vorname, nachname, uebernachtung, essen: essenCheckboxen, essen_sonstiges: essenSonstiges, buffet_beitrag: buffetBeitrag };
+  return { vorname, nachname, telefonnummer, uebernachtung, essen: essenCheckboxen, essen_sonstiges: essenSonstiges, buffet_beitrag: buffetBeitrag };
 }
 
 // === Validierung ===

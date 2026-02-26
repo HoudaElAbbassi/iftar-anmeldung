@@ -620,6 +620,47 @@ textarea {
   box-shadow: 0 4px 16px rgba(232, 114, 138, 0.4);
 }
 
+/* === Kontakt / WhatsApp === */
+.contact-box {
+  text-align: center;
+  margin-top: 24px;
+  margin-bottom: 8px;
+}
+
+.contact-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+  letter-spacing: 0.3px;
+}
+
+.whatsapp-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #fff;
+  text-decoration: none;
+  font-family: 'Lato', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 50px;
+  transition: background 0.2s, transform 0.15s;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+}
+
+.whatsapp-link:hover {
+  background: #1ebe5c;
+  transform: translateY(-1px);
+}
+
+.whatsapp-icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
 /* === Footer === */
 .site-footer {
   margin-top: 32px;

@@ -3,7 +3,7 @@ const router = express.Router();
 const { db } = require('../database/db');
 
 router.post('/', (req, res) => {
-  const { vorname, nachname, uebernachtung, essen, essen_sonstiges, buffet_beitrag } = req.body;
+  const { vorname, nachname, telefonnummer, uebernachtung, essen, essen_sonstiges, buffet_beitrag } = req.body;
 
   // Validierung
   const errors = [];
@@ -25,12 +25,13 @@ router.post('/', (req, res) => {
 
   try {
     const stmt = db.prepare(`
-      INSERT INTO anmeldungen (vorname, nachname, uebernachtung, essen_praeferenzen, buffet_beitrag)
-      VALUES (?, ?, ?, ?, ?)
+      INSERT INTO anmeldungen (vorname, nachname, telefonnummer, uebernachtung, essen_praeferenzen, buffet_beitrag)
+      VALUES (?, ?, ?, ?, ?, ?)
     `);
     stmt.run(
       vorname.trim(),
       nachname.trim(),
+      telefonnummer ? telefonnummer.trim() : null,
       uebernachtung,
       essenJSON,
       buffet_beitrag.trim()

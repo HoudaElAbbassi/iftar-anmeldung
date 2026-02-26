@@ -15,12 +15,19 @@ function initDB() {
       id              INTEGER PRIMARY KEY AUTOINCREMENT,
       vorname         TEXT NOT NULL,
       nachname        TEXT NOT NULL,
+      telefonnummer   TEXT,
       uebernachtung   TEXT NOT NULL,
       essen_praeferenzen TEXT,
       buffet_beitrag  TEXT NOT NULL,
       erstellt_am     TEXT DEFAULT (datetime('now', 'localtime'))
     )
   `);
+
+  // Migration: Spalte für bestehende Datenbanken hinzufügen
+  try {
+    db.exec(`ALTER TABLE anmeldungen ADD COLUMN telefonnummer TEXT`);
+  } catch (_) { /* Spalte existiert bereits */ }
+
   console.log('Datenbank initialisiert: database/anmeldungen.db');
 }
 
