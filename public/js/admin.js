@@ -115,6 +115,7 @@ function renderTable(data) {
     tr.innerHTML = `
       <td>${i + 1}</td>
       <td><strong>${escapeHtml(a.vorname)} ${escapeHtml(a.nachname)}</strong></td>
+      <td>${a.telefonnummer ? escapeHtml(a.telefonnummer) : '<span style="color:#aaa;font-style:italic;font-size:0.8rem">–</span>'}</td>
       <td>
         <span class="badge ${a.uebernachtung === 'ja' ? 'badge-ja' : 'badge-nein'}">
           ${a.uebernachtung === 'ja' ? '🌙 Ja' : '🏠 Nein'}
@@ -160,7 +161,7 @@ function applyFilters() {
 
 // === CSV-Export ===
 function exportCSV() {
-  const headers = ['Nr.', 'Vorname', 'Nachname', 'Übernachtung', 'Essens-Angaben', 'Buffet-Beitrag', 'Datum'];
+  const headers = ['Nr.', 'Vorname', 'Nachname', 'Telefonnummer', 'Übernachtung', 'Essens-Angaben', 'Buffet-Beitrag', 'Datum'];
 
   const rows = allAnmeldungen.map((a, i) => {
     const essen = parseEssen(a.essen_praeferenzen).join(' | ');
@@ -169,6 +170,7 @@ function exportCSV() {
       i + 1,
       csvCell(a.vorname),
       csvCell(a.nachname),
+      csvCell(a.telefonnummer),
       a.uebernachtung,
       csvCell(essen),
       csvCell(a.buffet_beitrag),
