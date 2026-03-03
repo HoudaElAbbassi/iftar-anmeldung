@@ -734,3 +734,48 @@ textarea {
 @media (max-width: 360px) {
   .radio-group { flex-direction: column; }
 }
+
+
+/* === Anmeldung geschlossen === */
+.closed-notice {
+  text-align: center;
+  padding: 2rem 1rem 1rem;
+}
+
+.closed-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.closed-text {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--rose-deep);
+  margin-bottom: 0.75rem;
+}
+
+.closed-subtext {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.schwesterntreff-link {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.65rem 1.4rem;
+  background: var(--rose-pale);
+  color: var(--rose-deep);
+  border: 1.5px solid var(--rose-light);
+  border-radius: 50px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: background 0.2s, color 0.2s;
+}
+
+.schwesterntreff-link:hover {
+  background: var(--rose);
+  color: var(--white);
+  border-color: var(--rose);
+}

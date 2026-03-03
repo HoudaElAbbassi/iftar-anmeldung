@@ -3,6 +3,9 @@ const router = express.Router();
 const { db } = require('../database/db');
 
 router.post('/', (req, res) => {
+  // Anmeldung geschlossen – Liste ist voll
+  return res.status(403).json({ success: false, errors: ['Die Anmeldung ist geschlossen. Die Liste ist bereits voll.'] });
+
   const { vorname, nachname, telefonnummer, uebernachtung, essen, essen_sonstiges, buffet_beitrag } = req.body;
 
   // Validierung
